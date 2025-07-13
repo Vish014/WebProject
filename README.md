@@ -1,6 +1,7 @@
 # Tourism Website Project
 This is a responsive tourism website developed using HTML, CSS, JavaScript, and PHP. It provides users with an interactive experience to explore popular travel destinations in Sri Lanka, view detailed information, and make bookings. The system includes session-based login, booking form validation, destination display cards, and dynamic navigation.
 
+---
 
 ## 🚀 Features
 
@@ -15,8 +16,8 @@ This is a responsive tourism website developed using HTML, CSS, JavaScript, and 
 
 ## 🛠️ Technologies Used
 
-- HTML5  
-- CSS3  
+- HTML  
+- CSS  
 - JavaScript  
 - PHP  
 - MySQL (via phpMyAdmin)  
