@@ -16,8 +16,13 @@ This is a responsive tourism website developed using HTML, CSS, JavaScript, and 
   💬 Contact form
 
 🛠️ Technologies Used
+
   HTML
+	
   CSS3
+	
   JavaScript
+	
   PHP
+	
   XAMPP / phpMyAdmin (for local database)
