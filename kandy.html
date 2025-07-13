@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandy City - DearsriLanka Tours</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as per instructions */
+            line-height: 1.6;
+            color: #333; /* Default text color */
+            background-color: #f4f4f4; /* Light background for the overall page */
+        }
+
+        /* Container for consistent content width */
+        .container {
+            max-width: 1200px; /* Adjust as needed for content width */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header/Navigation Bar Styling (Simplified for this page) */
+        .navbar {
+            background-color: #2a2c3a; /* Dark background */
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links ul li {
+            margin-left: 30px;
+        }
+
+        .nav-links ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links ul li a:hover,
+        .nav-links ul li a.active {
+            color: #ffd700;
+        }
+
+        .book-now-btn {
+            background-color: #ffd700;
+            color: #2a2c3a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .book-now-btn:hover {
+            background-color: #e6c200;
+        }
+
+        /* Hero Section for Kandy City */
+        .park-hero { /* Reusing .park-hero class for consistency, but styling for Kandy */
+            background-image: url('kandy.jpg'); /* Placeholder image for Kandy */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 40px;
+            position: relative;
+            z-index: 0;
+        }
+
+        .park-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+            z-index: 1;
+        }
+
+        .park-hero-content {
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .park-hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .park-hero-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .park-hero-content .book-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .park-hero-content .book-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Info Bar below Hero */
+        .info-bar {
+            background-color: #fff;
+            padding: 20px 0;
+            margin-top: -50px;
+            position: relative;
+            z-index: 3;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .info-item {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px 20px;
+            border-right: 1px solid #eee;
+        }
+
+        .info-item:last-child {
+            border-right: none;
+        }
+
+        .info-item h3 {
+            font-size: 24px;
+            color: #2a2c3a;
+            margin-bottom: 5px;
+        }
+
+        .info-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            background-color: #fff;
+            padding: 40px 0;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-heading {
+            font-size: 28px;
+            color: #2a2c3a;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 0 20px 40px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        .about-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-section ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .about-section ul li::before {
+            content: '\2022';
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Best Time to Visit Section */
+        .best-time-section {
+            padding: 0 20px 40px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        .weather-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .weather-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .weather-card h4 {
+            font-size: 18px;
+            color: #2a2c3a;
+            margin-bottom: 10px;
+        }
+
+        .weather-card p {
+            font-size: 15px;
+            color: #666;
+        }
+
+        /* Featured Activities Section */
+        .activities-section {
+            padding: 0 20px 40px;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-card {
+            background-color: #fefefe;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-card-content {
+            padding: 20px;
+        }
+
+        .activity-card-content h3 {
+            font-size: 20px;
+            color: #2a2c3a;
+            margin-bottom: 10px;
+        }
+
+        .activity-card-content p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Kandy City Location Section */
+        .map {
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .location-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .location-section .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            font-size: 20px;
+            border: 1px dashed #bbb;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2a2c3a;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .park-hero {
+                height: 300px;
+            }
+            .park-hero-content h1 {
+                font-size: 38px;
+            }
+            .info-bar {
+                flex-direction: column;
+                margin-top: -30px;
+                padding: 15px 0;
+            }
+            .info-item {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding: 15px 20px;
+            }
+            .info-item:last-child {
+                border-bottom: none;
+            }
+            .main-content, .location-section {
+                margin-top: 15px;
+                padding: 30px 0;
+            }
+            .section-heading {
+                font-size: 24px;
+            }
+            .about-section, .best-time-section, .activities-section {
+                padding: 0 20px 30px;
+            }
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                margin-bottom: 10px;
+            }
+            .book-now-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .park-hero {
+                height: 250px;
+                padding-bottom: 30px;
+            }
+            .park-hero-content h1 {
+                font-size: 32px;
+            }
+            .park-hero-content p {
+                font-size: 16px;
+            }
+            .info-bar {
+                border-radius: 10px;
+            }
+            .main-content, .location-section {
+                border-radius: 10px;
+            }
+            .section-heading {
+                font-size: 22px;
+            }
+        }
+    </style>
+    <!-- Optional: Google Fonts - Inter (uncomment if you want to explicitly load it) -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"> -->
+</head>
+<body>
+
+    <!-- Header/Navigation Bar Section -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <a href="start.php">GO SRILANKA</a>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="start.php">Home</a></li>
+                    <li><a href="destination.php">Destinations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section for Kandy City -->
+    <section class="park-hero">
+        <div class="park-hero-content">
+            <h1>Kandy City</h1>
+            <p>The cultural capital of Sri Lanka, home to sacred relics and lush landscapes.</p>
+            <a href="booknow.html" class="book-btn">Explore Kandy</a>
+        </div>
+    </section>
+
+    <!-- Info Bar Section (Kandy specific details) -->
+    <section class="info-bar container">
+        <div class="info-item">
+            <h3>~500m</h3>
+            <p>Elevation</p>
+        </div>
+        <div class="info-item">
+            <h3>125K+</h3>
+            <p>Population (City)</p>
+        </div>
+        <div class="info-item">
+            <h3>1988</h3>
+            <p>UNESCO Site</p>
+        </div>
+        <div class="info-item">
+            <h3>15th C.</h3>
+            <p>Kingdom Est.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <main class="main-content container">
+
+        <!-- About Kandy City Section -->
+        <section class="about-section">
+            <h2 class="section-heading">About Kandy City</h2>
+            <p>Kandy, nestled amidst the hills of the Central Province, is Sri Lanka's cultural heart and a UNESCO World Heritage Site. It was the last capital of the ancient kings' era of Sri Lanka and holds immense historical and religious significance, primarily due to the Temple of the Sacred Tooth Relic.</p>
+            <p>The city is a vibrant blend of rich heritage, natural beauty, and spiritual sanctity. Key aspects that make Kandy a must-visit destination include:</p>
+            <ul>
+                <li>Home to the sacred Sri Dalada Maligawa (Temple of the Tooth Relic), a vital pilgrimage site for Buddhists worldwide.</li>
+                <li>Surrounded by lush tea plantations, diverse rainforests, and the picturesque Kandy Lake.</li>
+                <li>Renowned for its vibrant cultural festivals, most notably the Esala Perahera, a grand annual procession.</li>
+                <li>Gateway to the stunning Royal Botanical Gardens, Peradeniya, showcasing a vast collection of flora.</li>
+                <li>Offers a cooler climate compared to the coastal regions, providing a refreshing escape.</li>
+            </ul>
+        </section>
+
+        <!-- Best Time to Visit Kandy Section -->
+        <section class="best-time-section">
+            <h2 class="section-heading">Best Time to Visit</h2>
+            <div class="weather-table">
+                <div class="weather-card">
+                    <h4>Peak Season</h4>
+                    <p>December to April</p>
+                    <p>Dry and sunny, ideal for sightseeing.</p>
+                </div>
+                <div class="weather-card">
+                    <h4>Shoulder Season</h4>
+                    <p>May to July</p>
+                    <p>Monsoon begins, lush greenery, fewer crowds.</p>
+                </div>
+                <div class="weather-card">
+                    <h4>Festival Season</h4>
+                    <p>July/August (Esala)</p>
+                    <p>Vibrant atmosphere, must-see Esala Perahera.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Activities in Kandy Section -->
+        <section class="activities-section">
+            <h2 class="section-heading">Featured Activities</h2>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <img src="temple.jpg" alt="Temple of the Tooth Relic in Kandy">
+                    <div class="activity-card-content">
+                        <h3>Visit Temple of the Tooth</h3>
+                        <p>Explore the sacred Sri Dalada Maligawa, housing the relic of the tooth of the Buddha, a spiritual and architectural marvel.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img src="garden.jpg" alt="Royal Botanical Gardens Peradeniya">
+                    <div class="activity-card-content">
+                        <h3>Explore Botanical Gardens</h3>
+                        <p>Wander through the magnificent Royal Botanical Gardens, Peradeniya, known for its vast collection of orchids and diverse plants.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img src="culture.jpg" alt="Kandy cultural dance performance">
+                    <div class="activity-card-content">
+                        <h3>Attend a Cultural Show</h3>
+                        <p>Experience traditional Kandyan dance and drumming performances, showcasing Sri Lanka's rich cultural heritage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kandy City Location Section -->
+       <section class="map">
+    <h2>Map of Kandy</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63323.777229313805!2d80.5845815!3d7.2905719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae367f61a1a7adf%3A0x2f59542c3b5d5d8c!2sKandy!5e0!3m2!1sen!2slk!4v1621234567890"
+      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 GO SRILANKA. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Tour - GO SRILANKA</title>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            color: #333; 
+            background-color: #f4f4f4; 
+        }
+
+       
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        .navbar {
+            background-color: #2a2c3a; 
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links ul li {
+            margin-left: 30px;
+        }
+
+        .nav-links ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links ul li a:hover,
+        .nav-links ul li a.active {
+            color: #ffd700;
+        }
+
+        .book-now-btn-nav { 
+            background-color: #ffd700;
+            color: #2a2c3a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .book-now-btn-nav:hover {
+            background-color: #e6c200;
+            transform: translateY(-1px);
+        }
+
+      
+        .booking-hero {
+            background-image: url('book.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 0;
+        }
+
+        .booking-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5); 
+            z-index: 1;
+        }
+
+        .booking-hero-content {
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .booking-hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .booking-hero-content p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        
+        .booking-content-section {
+            background-color: #fff;
+            padding: 60px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: -50px; 
+            position: relative;
+            z-index: 1;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .booking-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fefefe;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .booking-form-wrapper h2 {
+            font-size: 32px;
+            color: #2a2c3a;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .booking-form-wrapper p.description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 calc(50% - 10px); 
+            min-width: 280px; 
+        }
+
+        .form-group.full-width {
+            flex: 1 1 100%;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn-container {
+            flex: 1 1 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-booking-btn {
+            background-color: #28a745; 
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .submit-booking-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2a2c3a;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .booking-hero {
+                height: 250px;
+            }
+            .booking-hero-content h1 {
+                font-size: 38px;
+            }
+            .booking-form-wrapper {
+                padding: 20px;
+            }
+            .booking-form-wrapper h2 {
+                font-size: 28px;
+            }
+            .form-group {
+                flex: 1 1 100%; 
+                min-width: unset;
+            }
+            .book-now-btn-nav {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                margin-bottom: 10px;
+            }
+            .booking-hero-content h1 {
+                font-size: 32px;
+            }
+            .booking-hero-content p {
+                font-size: 16px;
+            }
+            .booking-content-section {
+                padding: 30px 0;
+                margin-top: -30px;
+            }
+            .booking-form-wrapper {
+                border-radius: 8px;
+            }
+            .submit-booking-btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <a href="start.php">GO SRILANKA</a>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="start.php">Home</a></li>
+                    <li><a href="destination.php">Destinations</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="booknow.html" class="active">Book Now</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+    </header>
+
+   
+    <section class="booking-hero">
+        <div class="booking-hero-content">
+            <h1>Book Your Dream Tour</h1>
+            <p>Fill out the form below to start planning your unforgettable journey to Sri Lanka.</p>
+        </div>
+    </section>
+
+   
+    <section class="booking-content-section">
+        <div class="container">
+            <div class="booking-form-wrapper">
+                <h2>Your Booking Details</h2>
+                <p class="description">Please provide us with the necessary information, and our team will get back to you shortly to finalize your tour.</p>
+
+                <form class="booking-form" id="bookingForm" action="booknow.php" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., +94 77 123 4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Preferred Destination/Tour</label>
+                        <select id="destination" name="destination" required>
+                            <option value="">Select a Destination/Tour</option>
+                            <option value="Kandy">Kandy City Tour</option>
+                            <option value="Colombo">Colombo City Tour</option>
+                            <option value="Hambanthota">Hambanthota Wildlife & Beaches</option>
+                            <option value="Kurunagala">Kurunagala Heritage & Rocks</option>
+                            <option value="Trincomalee">Trincomalee Beaches & Temples</option>
+                            <option value="Ella">Ella Hill Country Adventure</option>
+                            <option value="custom">Custom Tour</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="adults">Number of Adults</label>
+                        <input type="number" id="adults" name="adults" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Number of Children (0-12 years)</label>
+                        <input type="number" id="children" name="children" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="travelDate">Preferred Travel Date</label>
+                        <input type="date" id="travelDate" name="travelDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (in days)</label>
+                        <input type="number" id="duration" name="duration" min="1" placeholder="e.g., 7" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="specialRequests">Special Requests / Comments</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="5" placeholder="Any specific interests, dietary needs, or accessibility requirements?"></textarea>
+                    </div>
+                    <div class="submit-btn-container">
+                        <button type="submit" class="submit-booking-btn">Submit Booking Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="footer">
+        <p>&copy; 2025 GO SRILANKA. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const destination = document.getElementById("destination").value;
+    const adults = document.getElementById("adults").value;
+    const children = document.getElementById("children").value;
+    const travelDate = document.getElementById("travelDate").value;
+    const duration = document.getElementById("duration").value;
+
+    let errors = [];
+
+    
+    const namePattern = /^[A-Za-z]+ [A-Za-z]+$/;
+    if (!namePattern.test(name)) {
+        errors.push("Full name is required.");
+    }
+
+    
+    const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailPattern.test(email)) {
+        errors.push("Please enter a valid email address.");
+    }
+
+    const phonePattern = /^[0-9]+$/;
+    if (!phonePattern.test(phone)) {
+        errors.push("Please input numeric characters only.");
+    }
+    
+    if (destination === "") {
+        errors.push("Please select a destination.");
+    }
+
+    
+    if (parseInt(adults) < 1) {
+        errors.push("At least one adult must be included.");
+    }
+
+    
+    const today = new Date().toISOString().split("T")[0];
+    if (travelDate === "" || travelDate < today) {
+        errors.push("Please select a valid future travel date.");
+    }
+
+    
+    if (parseInt(duration) < 1) {
+        errors.push("Duration must be at least 1 day.");
+    }
+
+    
+    if (errors.length > 0) {
+        e.preventDefault();
+        alert("Please fix the following errors:\n\n" + errors.join("\n"));
+    }
+});
+</script>
+
+</body>
+</html>

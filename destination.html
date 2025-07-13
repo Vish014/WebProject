@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <title>GO SRILANKA-Destination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Base Body Styles - Adjusted for readability on dark background */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif; /* Using Inter font */
+            line-height: 1.6;
+            background-color: #080808; /* User's specified background */
+            color: #f0f0f0; /* Adjusted text color for readability on dark background */
+        }
+
+        .container {
+            max-width: 1200px; /* Adjust as needed for content width */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: #2a2c3a; /* Dark background color of the navigation bar */
+            color: #fff; /* Text color for navigation elements */
+            padding: 15px 0; /* Vertical padding */
+            position: sticky; /* Makes the navbar stick to the top when scrolling */
+            top: 0; /* Sticks to the very top */
+            z-index: 1000; /* Ensures the navbar stays on top of other content */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+        }
+
+        .container {
+            max-width: 1200px; /* Maximum width of the content inside the navbar */
+            margin: 0 auto; /* Centers the container horizontally */
+            padding: 0 20px; /* Horizontal padding for content inside the container */
+        }
+
+        .nav-content {
+            display: flex; /* Uses Flexbox for horizontal arrangement of logo and links */
+            justify-content: space-between; /* Distributes space between logo and nav links */
+            align-items: center; /* Vertically aligns items in the center */
+        }
+
+        .logo {
+            flex-shrink: 0; /* Prevent logo from shrinking */
+        }
+
+        .logo a {
+            color: #fff; /* Color of the logo text */
+            text-decoration: none; /* Removes underline from the logo link */
+            font-size: 24px; /* Font size of the logo */
+            font-weight: bold; /* Bold font for the logo */
+        }
+
+        /* Wrapper for nav links and buttons */
+        .nav-items-wrapper {
+            display: flex; /* Flex container for nav items and buttons */
+            align-items: center;
+            flex-grow: 1; /* Allow nav-items-wrapper to grow */
+            justify-content: flex-end; /* Push nav items to the right */
+            flex-wrap: wrap; /* Allow nav items to wrap */
+        }
+
+        .nav-links-list { /* Renamed from .nav-links to avoid conflict with existing HTML */
+            list-style: none; /* Removes bullet points from the list */
+            display: flex; /* Uses Flexbox to arrange list items horizontally */
+            align-items: center; /* Vertically aligns list items in the center */
+            margin-right: 20px; /* Space between nav links and buttons */
+            flex-wrap: wrap; /* Allow list items to wrap */
+            justify-content: center; /* Center items if they wrap */
+        }
+
+        .nav-links-list li {
+            margin-left: 30px; /* Space between navigation items */
+        }
+
+        .nav-links-list li a {
+            color: #fff; /* Color of the navigation links */
+            text-decoration: none; /* Removes underline from links */
+            font-size: 16px; /* Font size of navigation links */
+            padding: 5px 0; /* Vertical padding for click area */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        .nav-links-list li a:hover,
+        .nav-links-list li a.active {
+            color: #ffd700; /* Highlight color for active or hovered links */
+        }
+
+        .book-now-btn { /* Removed .trip-idea-btn from this selector */
+            background-color: #ffd700; /* Background color of the buttons */
+            color: #2a2c3a; /* Text color of the buttons */
+            border: none; /* No border for the buttons */
+            padding: 10px 18px; /* Padding inside the buttons, slightly adjusted to match filters */
+            border-radius: 20px; /* Rounded corners for the buttons, matching filters */
+            cursor: pointer; /* Changes cursor to pointer on hover */
+            font-size: 16px; /* Font size of the button text */
+            margin-left: 15px; /* Space between buttons */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for the buttons */
+            white-space: nowrap; /* Prevent button text from wrapping */
+            font-weight: 500; /* Match filter button font-weight */
+        }
+
+        .book-now-btn:hover { /* Removed .trip-idea-btn from this selector */
+            background-color: #e6c200; /* Darker background on hover */
+            transform: translateY(-1px); /* Slight lift effect */
+        }
+
+        /* Burger menu styling (from your original code) */
+        .burger {
+            display: none; /* Hidden by default, shown on mobile */
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+        }
+
+        .burger div {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Existing Destinations Page Styles (from your original code) */
+        .destinations-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .filters button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 20px;
+            background-color: #e4e4e4;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333; /* Ensure filter button text is readable */
+        }
+
+        .filters .active {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative; /* Needed for province-tag positioning */
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .province-tag {
+            position: absolute;
+            background: #444;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 0 0 8px 0;
+            top: 0;
+            left: 0;
+        }
+
+        .destination-card h3 {
+            color: #333;
+            font-size: 20px;
+            margin: 16px 16px 8px;
+        }
+
+        .destination-card p {
+            margin: 0 16px 10px;
+            font-size: 14px;
+            color: #555; /* Ensure paragraph text is readable */
+        }
+
+        .destination-card ul {
+            margin: 0 16px 10px;
+            padding-left: 18px;
+            color: #555; /* Ensure list text is readable */
+        }
+
+        .details-button {
+            display: block;
+            margin: 12px 16px 16px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .details-button:hover {
+            background-color: #1d2e7b;
+        }
+
+        .footer {
+            background-color: #2a2c3a;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links-list { /* Hide navigation links on smaller screens */
+                display: none;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .nav-items-wrapper {
+                width: 100%; /* Take full width */
+                justify-content: center; /* Center buttons when stacked */
+                margin-right: 0;
+                order: 2; /* Place wrapper after burger for mobile */
+            }
+
+            .book-now-btn { /* Adjusted margin for single button */
+                margin: 0 0 10px 0;
+            }
+
+            .burger {
+                display: flex; /* Show burger menu on mobile */
+                order: 1; /* Place burger before nav-items-wrapper */
+                margin-left: auto; /* Push burger to the right */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                padding: 0 15px;
+            }
+            .logo a {
+                font-size: 20px;
+            }
+            .book-now-btn {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="start.html">Go Sri Lanka</a>
+            </div>
+            <div class="nav-items-wrapper">
+                <ul class="nav-links-list">
+                    <li><a href="start.html">Home</a></li>
+                    <li><a href="destination.html" class="active">Destinations</a></li>
+                    
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <button class="book-now-btn"><a href="booknow.html">Book Now</a></button>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="destinations-section">
+            <div class="destinations-grid">
+                <!-- Destination Card 1 -->
+                <div class="destination-card">
+                    <img src="colombo.jpg" alt="colombo">
+                    <div class="province-tag">Western Province</div>
+                    <h3>Colombo</h3>
+                    <p>Sri Lanka’s capital and urban hub, blending colonial heritage with modern development.</p>
+                    <ul>
+                        <li>Galle Face & Colombo Fort</li>
+                        <li>National Museum & Independence Square</li>
+                        <li>Lotus Tower & One Galle Face</li>
+                    </ul>
+                    <p><strong>Best time:</strong> November to March</p>
+                    <p><strong>Nearby:</strong> Mount Lavinia Beach, Diyatha Uyana</p><br/>
+                    <a href="colombo.html" class="details-button">View Details</a>
+                </div>
+
+                <!-- Destination Card 2 -->
+                <div class="destination-card">
+                    <img src="hambanthota.webp" alt="hambanthota">
+                    <div class="province-tag">Southern Province</div>
+                    <h3>Hambanthota</h3>
+                    <p>A rising tourism hub near wildlife sanctuaries and southern beaches.</p>
+                    <ul>
+                        <li>Bundala National Park (birdwatching)</li>
+                        <li>Hambantota Port & Dry Zone Botanical Garden</li>
+                        <li>Safari trips to Ridiyagama Park</li>
+                    </ul>
+                    <p><strong>Best time:</strong> December to March</p>
+                    <p><strong>Nearby:</strong> Yala, Kataragama Temple, Rekawa Turtle Beach</p><br/>
+                    <a href="hambanthota.html" class="details-button">View Details</a>
+                </div>
+
+                <!-- Destination Card 3 -->
+                <div class="destination-card">
+                    <img src="kandy.jpg" alt="kandy">
+                    <div class="province-tag">Central Province</div>
+                    <h3>Kandy</h3>
+                    <p>Sacred Buddhist city surrounded by hills. Known for the Temple of the Tooth, cultural shows, and colonial charm.</p>
+                    <ul>
+                        <li>Temple of the Tooth Relic (Sri Dalada Maligawa)</li>
+                        <li>Royal Botanical Gardens – Peradeniya</li>
+                        <li>Kandy Lake & Esala Perahera festival</li>
+                    </ul>
+                    <p><strong>Best time:</strong> January to September</p>
+                    <p><strong>Nearby:</strong>Udawattakele Forest Reserve, Bahirawakanda Buddha Statues</p>
+                    <a href="kandy.html" class="details-button">View Details</a>
+                </div>
+
+                <!-- Destination Card 4 -->
+                <div class="destination-card">
+                    <img src="kurunagala.jpg" alt="kurunagala">
+                    <div class="province-tag">North Western Province</div>
+                    <h3>Kurunegala</h3>
+                    <p>Ancient royal capital surrounded by rock hills, ideal for hiking, heritage exploration, and nature.</p>
+                    <ul>
+                        <li>Kurunegala Lake & Ethagala (Elephant Rock)</li>
+                        <li>Ridi Viharaya (silver temple)</li>
+                        <li>Panduwasnuwara ancient city</li>
+                    </ul>
+                    <p><strong>Best time:</strong> January to April</p>
+                    <p><strong>Nearby:</strong> Yapahuwa Rock Fortress, Kobeigane Tank</p>
+                    <a href="kurunagala.html" class="details-button">View Details</a>
+                </div>
+
+                <!-- Destination Card 5 -->
+                <div class="destination-card">
+                    <img src="trincomalee.jpg" alt="Trincomalee">
+                    <div class="province-tag">Eastern Province</div>
+                    <h3>Trincomalee</h3>
+                    <p>Coastal town with crystal-clear beaches and colonial history. A top spot for snorkeling and whale watching.</p>
+                    <ul>
+                        <li>Nilaveli & Uppuveli beaches</li>
+                        <li>Pigeon Island National Park (snorkeling/diving)</li>
+                        <li>Koneswaram Temple & Lover’s Leap viewpoint</li>
+                    </ul>
+                    <p><strong>Best time:</strong> April to October</p>
+                    <p><strong>Nearby:</strong> Marble Beach, Fort Frederick</p>
+                    <a href="trincomalee.html" class="details-button">View Details</a>
+                </div>
+
+                <!-- Destination Card 6 -->
+                <div class="destination-card">
+                    <img src="ella.jpg" alt="Ella">
+                    <div class="province-tag">Uva Province</div>
+                    <h3>Ella</h3>
+                    <p>Mountain village with tea plantations, waterfalls, and adventure vibes.</p>
+                    <ul>
+                        <li>Nine Arch Bridge</li>
+                        <li>Little Adam’s Peak</li>
+                        <li>Ella Rock hikes</li>
+                    </ul>
+                    <p><strong>Best time:</strong> January to March</p>
+                    <p><strong>Nearby:</strong> Ravana Falls, Lipton’s Seat</p>
+                    <a href="ella.html" class="details-button">View Details</a>
+                </div>
+            </div>
+        </section>
+    </main>
+<footer class="footer">
+        <p>&copy; 2025 GO SRILANKA. All rights reserved.</p>
+    </footer>
+    
+
+</body>
+</html>
